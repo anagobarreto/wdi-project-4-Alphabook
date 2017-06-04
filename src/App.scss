@@ -1,0 +1,89 @@
+header {
+  background-color: #eee;
+  line-height: 50px;
+  padding: 0 10px;
+
+  h1 {
+    margin: 0;
+    display: inline;
+  }
+
+  ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+
+article.status {
+  background-color: #eee;
+  margin-bottom: 10px;
+
+  .status-container {
+    padding: 10px;
+  }
+
+  .status-likes {
+    color: blue;
+    margin-bottom: 0;
+  }
+
+  .status-buttons {
+    border-top: 1px solid red;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 10px 0;
+      cursor: pointer;
+      display: inline-block;
+      width: 50%;
+      text-align: center;
+      user-select: none;
+
+      border-right: 1px solid red;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .status-line {
+    line-height: 50px;
+    margin: 0;
+
+    .profile-pic {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+}
+
+footer {
+  clear: both;
+  background-color: #eee;
+  padding: 10px;
+}
+
+section {
+  width: 75%;
+  float: right;
+  padding: 10px;
+}
+
+aside {
+  width: 25%;
+  float: left;
+  padding: 10px;
+}
