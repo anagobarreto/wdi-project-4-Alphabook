@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('mongoose').model('User');
-const config = require('../../config');
+const config = require('../config');
 
 module.exports = (req, res, next) => {
   if (!req.header.authorization) {
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     if (err) {
       return res.status(401).end();
     }
-    
+
     const userId = decoded.sub;
 
     return User.findById(userId, (userErr, user) => {

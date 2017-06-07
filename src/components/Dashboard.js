@@ -1,5 +1,6 @@
+import { Link } from 'react-router';
 import React, { Component } from 'react';
-import './App.css';
+import '../styles/dashboard.css';
 
 const statuses = [
   {
@@ -65,7 +66,7 @@ class App extends Component {
           <h1>Anabook</h1>
           <ul>
             <li>Profile</li>
-            <li>Logout</li>
+            <li><Link to="/logout">Logout</Link></li>
           </ul>
         </header>
         <main>

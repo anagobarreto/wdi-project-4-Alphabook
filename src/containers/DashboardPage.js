@@ -1,7 +1,6 @@
 import React from 'react';
 import Auth from '../modules/Auth';
-import Dashboard from '../components/Dashboard.jsx';
-
+import Dashboard from '../components/Dashboard';
 
 class DashboardPage extends React.Component {
 
@@ -28,9 +27,9 @@ class DashboardPage extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
-        this.setState({
+        /*this.setState({
           secretData: xhr.response.message
-        });
+        });*/
       }
   });
   xhr.send();

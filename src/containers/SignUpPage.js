@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import SignUpForm from '../components/SignUpForm.jsx';
+import React from 'react';
+import SignUpForm from '../components/SignUpForm';
 
 
 class SignUpPage extends React.Component {
@@ -93,10 +93,6 @@ class SignUpPage extends React.Component {
       />
     );
   }
-
 }
-SignUpPage.contextTypes = {
-  router: PropTypes.object.isRequired
-};
 
 export default SignUpPage;

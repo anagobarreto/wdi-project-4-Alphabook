@@ -32,4 +32,4 @@ UserSchema.pre('save', function saveHook(next) {
   });
 });
 
-module.exports = mongoos.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

@@ -87,7 +87,7 @@ function validateLoginForm(payload) {
   };
 }
 
-router.post('/signup', (req, res) => {
+router.post('/signup', (req, res, next) => {
   const validationResult = validateSignUpForm(req.body);
   if(!validationResult.success) {
     return res.status(400).json({
@@ -97,7 +97,7 @@ router.post('/signup', (req, res) => {
     });
   }
 
-  return passport.authentication('local-signup', (err) => {
+  return passport.authenticate('local-signup', (err) => {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
         return res.status(409).json({
@@ -123,9 +123,9 @@ router.post('/signup', (req, res) => {
   (req, res, next);
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
   const validationResult = validateLoginForm(req.body);
-  of (!validationResult.success) {
+  if (!validationResult.success) {
     return res.status(400).json({
       success:false,
       message: validationResult.message,

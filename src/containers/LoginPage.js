@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Auth from '../modules/Auth';
-import LoginForm from '../components/LoginForm.jsx';
-
+import LoginForm from '../components/LoginForm';
+import PropTypes from 'prop-types';
 
 class LoginPage extends React.Component {
   constructor(props, context) {
@@ -44,7 +44,7 @@ class LoginPage extends React.Component {
 
     // create an AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open('post', '/auth/login');
+    xhr.open('post', ' /auth/login');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -103,7 +103,6 @@ class LoginPage extends React.Component {
       />
     );
   }
-
 }
 
 LoginPage.contextTypes = {

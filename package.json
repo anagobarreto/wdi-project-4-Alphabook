@@ -3,21 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bcrypt": "^1.0.2",
-    "jsonwebtoken": "^7.4.1",
-    "mongoose": "^4.10.4",
+    "bcrypt": "^1.0.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-http-proxy": "^1.0.3",
+    "jsonwebtoken": "^7.2.1",
+    "material-ui": "^0.16.5",
+    "mongoose": "^4.7.3",
     "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "validator": "^6.2.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
   },
   "scripts": {
-    "start": "react-scripts start | node-sass --watch --output src src",
-    "build": "node-sass --output src src && react-scripts build",
+    "start": "nodemon server/index.js --watch server | react-scripts start | node-sass --watch --output src/styles src/styles",
+    "build": "node-sass --output src/styles src/styles && react-scripts build",
+    "start-prod": "yarn build && NODE_ENV=production node server/index.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
