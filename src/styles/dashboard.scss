@@ -1,11 +1,15 @@
 header {
-  background-color: #eee;
-  line-height: 50px;
+  background-color: #3B5998;
+  height: 42px;
+  line-height: 35px;
   padding: 0 10px;
+  text-decoration: none;
+
 
   h1 {
     margin: 0;
     display: inline;
+    color: #fff;
   }
 
   ul {
@@ -16,12 +20,13 @@ header {
     li {
       display: inline-block;
       margin-right: 10px;
+      color: #fff;
     }
   }
 }
 
 article.status {
-  background-color: #eee;
+  background-color: #fff;
   margin-bottom: 10px;
 
   .status-container {
@@ -64,6 +69,7 @@ article.status {
 
     .profile-pic {
       height: 50px;
+      width: 50px;
       vertical-align: middle;
       margin-right: 10px;
     }

@@ -6,7 +6,7 @@ const statuses = [
   {
     id: 1,
     name: "Ana Barreto",
-    profilePic: "/profilepic.jpg",
+    profilePic: "/avatar.jpg",
     text: "This is a status",
     likeCount: 5,
     liked: false,
@@ -14,7 +14,23 @@ const statuses = [
   {
     id: 2,
     name: "Ana McKenzie",
-    profilePic: "/profilepic.jpg",
+    profilePic: "/avatar.jpg",
+    text: "This is a status tasdfasdf",
+    likeCount: 8,
+    liked: true,
+  },
+  {
+    id: 3,
+    name: "Sebastian McKenzie",
+    profilePic: "/avatar.jpg",
+    text: "This is a status tasdfasdf",
+    likeCount: 8,
+    liked: true,
+  },
+  {
+    id: 4,
+    name: "Sebastian Barreto",
+    profilePic: "/avatar.jpg",
     text: "This is a status tasdfasdf",
     likeCount: 8,
     liked: true,
@@ -63,15 +79,30 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Anabook</h1>
+
+          <h1><Link to="/">
+          <img src="/logo3.png" height="35" width="35"/>
+        </Link></h1>
           <ul>
-            <li>Profile</li>
+            <li><Link to="/profile">Ana</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/logout">Logout</Link></li>
           </ul>
         </header>
         <main>
           <aside>
-            I am a sidebar
+            <ul>
+              <li>Ana Barreto</li>
+              <li>News Feed</li>
+              <li>Messenger</li>
+              <li>Friends</li>
+            </ul>
+            <ul>
+              <li>Events</li>
+              <li>Groups</li>
+              <li>Pages</li>
+            </ul>
+
           </aside>
           <section>
             {statuses.map(status => {
