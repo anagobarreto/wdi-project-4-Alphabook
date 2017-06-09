@@ -67,7 +67,8 @@ class Status extends Component {
           }}>
             {this.state.liked ? 'Unlike' : 'Like'}
           </li>
-          <li>Comment</li>
+          <li><img class="like" src="like (2).png" />Comment</li>
+          <li>Share</li>
         </ul>
       </article>
     );

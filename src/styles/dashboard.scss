@@ -47,7 +47,7 @@ article.status {
       padding: 10px 0;
       cursor: pointer;
       display: inline-block;
-      width: 50%;
+      width: 10%;
       text-align: center;
       user-select: none;
 
@@ -92,4 +92,10 @@ aside {
   width: 25%;
   float: left;
   padding: 10px;
+}
+
+
+.like img {
+  width: 25px;
+  height: 25px;
 }
