@@ -89,13 +89,30 @@ section {
 }
 
 aside {
-  width: 25%;
+  width: 20%;
   float: left;
   padding: 10px;
+
+  ul {
+    list-style: none;
+    li {
+      margin-bottom: 3px;
+    }
+  }
+
 }
 
-
-.like img {
-  width: 25px;
-  height: 25px;
+.top {
+  li:first-child {
+    font-size: 20px;
+    margin-bottom: 7px;
+  }
 }
+
+.link {
+  text-decoration: none;
+  color: white;
+    :hover {
+      color: red;
+    }
+  }

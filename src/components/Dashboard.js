@@ -60,6 +60,7 @@ class Status extends Component {
           </p>
         </div>
         <ul className="status-buttons">
+          <img class="like" src="like (3).png" />
           <li onClick={() => {
             this.setState({
               liked: !this.state.liked,
@@ -67,7 +68,7 @@ class Status extends Component {
           }}>
             {this.state.liked ? 'Unlike' : 'Like'}
           </li>
-          <li><img class="like" src="like (2).png" />Comment</li>
+          <li>Comment</li>
           <li>Share</li>
         </ul>
       </article>
@@ -91,17 +92,17 @@ class App extends Component {
           </ul>
         </header>
         <main>
-          <aside>
-            <ul>
-              <li>Ana Barreto</li>
-              <li>News Feed</li>
-              <li>Messenger</li>
-              <li>Friends</li>
+          <aside className="aside">
+            <ul className="top">
+              <li><Link to="/profile">Ana Barreto</Link></li>
+              <li><Link to="/">News Feed</Link></li>
+              <li><Link to="/messages">Messages</Link></li>
+              <li><Link to="/friends">Friends</Link></li>
             </ul>
-            <ul>
-              <li>Events</li>
-              <li>Groups</li>
-              <li>Pages</li>
+            <ul className="bottom">
+              <li><Link to="/events">Events</Link></li>
+              <li><Link to="/groups">Groups</Link></li>
+              <li><Link to="/pages">Pages</Link></li>
             </ul>
 
           </aside>
