@@ -31,8 +31,8 @@ app.use('/api', apiRoutes);
 if (process.env.NODE_ENV === 'production') {
   app.use(app.static('build'));
 } else {
-  const proxy = require('express-http-proxy');
-  app.use(proxy('http://localhost:3000'));
+  const proxy = require('http-proxy-middleware');
+  app.use(proxy('/', {target: 'http://localhost:3000', ws: true}));
 }
 
 app.listen(3001, () => {

@@ -1,10 +1,11 @@
 const express = require('express');
+const Status = require('../models/status');
 
 const router = new express.Router();
 
 router.get('/dashboard', (req, res) => {
-  res.status(200).json({
-    message: 'You are authorized to see this secret message'
+  Status.find({}, function(err, statuses) {
+    res.status(200).json(statuses);
   });
 });
 

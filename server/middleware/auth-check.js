@@ -3,7 +3,7 @@ const User = require('mongoose').model('User');
 const config = require('../config');
 
 module.exports = (req, res, next) => {
-  if (!req.header.authorization) {
+  if (!req.headers.authorization) {
     return res.status(401).end();
   }
 

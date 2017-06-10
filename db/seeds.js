@@ -1,51 +1,71 @@
-const env        = require('../config/env');
+const config        = require('../server/config/index.json');
 const mongoose   = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-mongoose.connect(env.db[process.env.NODE_ENV]);
+mongoose.connect(config.dbUri);
 
-const User = require('../models/user');
+const User = require('../server/models/user');
+const Status = require('../server/models/status');
 
-User.collection.drop();
+let counter = 2;
+function finished() {
+  counter--;
 
-User
-  .create([
-    {
-      username: 'ana',
-      email: 'ana@ana.com',
-      password: 'password',
-      profilePic: 'http://fillmurray.com/200/200',
-      location: 'W4 231',
-      mobile: '07842147542'
-    }, {
-      username: 'jackie',
-      email: 'jackie@jackie.com',
-      password: 'password',
-      passwordConfirmation: 'password',
-      profilePic: 'http://fillmurray.com/200/200',
-      location: 'M3 12M',
-      mobile: '07842147542'
-    },{
-      username: 'bobby',
-      email: 'bobby@bobby.com',
-      password: 'password',
-      passwordConfirmation: 'password',
-      profilePic: 'http://fillmurray.com/200/200',
-      location: 'M2 M22',
-      mobile: '07842147542'
-    }, {
-      username: 'raul',
-      email: 'raul@raul.com',
-      password: 'password',
-      passwordConfirmation: 'password',
-      profilePic: 'http://fillmurray.com/200/200',
-      location: 'S2 S32',
-      mobile: '07842147542'
-    }
-  ])
-  .then(users => {
-    console.log(`${users.length} users were saved.`);
-  })
-  .finally(() => {
+  if (counter === 0) {
     mongoose.connection.close();
-  });
+    process.exit();
+  }
+}
+
+Status.collection.drop(function() {
+  Status
+    .create([
+      {
+        name: "Ana Barreto",
+        profilePic: "/avatar.jpg",
+        text: "This is a status",
+        likeCount: 5,
+        liked: false,
+      },
+      {
+        name: "Ana McKenzie",
+        profilePic: "/avatar.jpg",
+        text: "This is a status tasdfasdf",
+        likeCount: 8,
+        liked: true,
+      },
+      {
+        name: "Sebastian McKenzie",
+        profilePic: "/avatar.jpg",
+        text: "This is a status tasdfasdf",
+        likeCount: 8,
+        liked: true,
+      },
+      {
+        name: "Sebastian Barreto",
+        profilePic: "/avatar.jpg",
+        text: "This is a status tasdfasdf",
+        likeCount: 8,
+        liked: true,
+      }
+    ])
+    .then(statuses => {
+      console.log(`${statuses.length} statuses were saved.`);
+      finished();
+    });
+});
+
+User.collection.drop(function() {
+  User
+    .create([
+      {
+        email: 'ana@ana.com',
+        name: 'Ana Barreto',
+        password: 'password'
+      }
+    ])
+    .then(users => {
+      console.log(`${users.length} users were saved.`);
+      finished();
+    });
+});

@@ -33,6 +33,11 @@ article.status {
     padding: 10px;
   }
 
+  .like-icon {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
   .status-likes {
     color: blue;
     margin-bottom: 0;
@@ -47,7 +52,7 @@ article.status {
       padding: 10px 0;
       cursor: pointer;
       display: inline-block;
-      width: 10%;
+      width: 33%;
       text-align: center;
       user-select: none;
 
@@ -112,7 +117,7 @@ aside {
 .link {
   text-decoration: none;
   color: white;
-    :hover {
+    &:hover {
       color: red;
     }
   }

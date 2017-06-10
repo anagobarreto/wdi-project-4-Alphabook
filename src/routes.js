@@ -2,8 +2,8 @@ import HomePage from './components/HomePage';
 import DashboardPage from './containers/DashboardPage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
+import ProfilePage from './containers/ProfilePage';
 import Auth from './modules/Auth';
-
 
 const routes = {
   childRoutes: [
@@ -16,6 +16,11 @@ const routes = {
           callback(null, HomePage);
         }
       }
+    },
+
+    {
+      path: '/profile/:id',
+      component: ProfilePage
     },
 
     {
@@ -36,7 +41,6 @@ const routes = {
         replace('/');
       }
     }
-
   ]
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Auth from '../modules/Auth';
 import { Link } from 'react-router';
 
 const HomePage = () => (
