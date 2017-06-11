@@ -20,34 +20,7 @@ function finished() {
 Status.collection.drop(function() {
   Status
     .create([
-      {
-        name: "Ana Barreto",
-        profilePic: "/avatar.jpg",
-        text: "This is a status",
-        likeCount: 5,
-        liked: false,
-      },
-      {
-        name: "Ana McKenzie",
-        profilePic: "/avatar.jpg",
-        text: "This is a status tasdfasdf",
-        likeCount: 8,
-        liked: true,
-      },
-      {
-        name: "Sebastian McKenzie",
-        profilePic: "/avatar.jpg",
-        text: "This is a status tasdfasdf",
-        likeCount: 8,
-        liked: true,
-      },
-      {
-        name: "Sebastian Barreto",
-        profilePic: "/avatar.jpg",
-        text: "This is a status tasdfasdf",
-        likeCount: 8,
-        liked: true,
-      }
+    
     ])
     .then(statuses => {
       console.log(`${statuses.length} statuses were saved.`);

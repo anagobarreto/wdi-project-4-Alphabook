@@ -1,9 +1,27 @@
 import { Link } from 'react-router';
 import Status from './Status';
+import Auth from '../modules/Auth';
 import React, { Component } from 'react';
 import '../styles/dashboard.css';
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {draftStatus: ''};
+  }
+
+  postStatus(statusText) {
+    const body = new FormData();
+    body.append('statusText', statusText);
+
+    Auth.fetch('/api/post-status', {
+      method: "POST",
+      body,
+    }).then(status => {
+      //
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -34,6 +52,16 @@ export default class Dashboard extends Component {
 
           </aside>
           <section>
+            <div>
+              <textarea value={this.state. draftStatus} onChange={(e) => {
+                this.setState({draftStatus: e.target.value});
+              }} />
+              <button onClick={() => {
+                const status = this.state.draftStatus;
+                this.postStatus(status);
+                this.setState({draftStatus: ''});
+              }}>Post</button>
+            </div>
             {this.props.statuses.map(status => {
               return <Status key={status.id} {...status} />;
             })}
