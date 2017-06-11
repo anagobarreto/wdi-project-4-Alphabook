@@ -3,10 +3,6 @@ import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard';
 
 class DashboardPage extends React.Component {
-
-  /**
-   * Class constructor.
-   */
   constructor(props) {
     super(props);
 
@@ -15,34 +11,31 @@ class DashboardPage extends React.Component {
     };
   }
 
-  /**
-   * This method will be executed after initial rendering.
-   */
   componentDidMount() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('get', '/api/dashboard');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // set the authorization HTTP header
-    xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
-        console.log(xhr.response);
-        this.setState({
-          statuses: xhr.response
-        });
-      }
-  });
-  xhr.send();
-}
+    this.fetchLatestStatuses();
 
-/**
- * Render the component.
- */
-render() {
-  return (<Dashboard statuses={this.state.statuses} />);
-}
+    this.timer = setInterval(() => {
+      this.fetchLatestStatuses();
+    }, 2000);
+  }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  fetchLatestStatuses() {
+    Auth
+      .fetch('/api/dashboard', {
+        method: 'GET',
+      })
+      .then(statuses => {
+        this.setState({statuses});
+      });
+  }
+
+  render() {
+    return <Dashboard statuses={this.state.statuses} />;
+  }
 }
 
 export default DashboardPage;

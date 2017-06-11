@@ -18,12 +18,13 @@ class Auth {
   static fetch(url, options) {
     return window.fetch(url, {
       ...options,
+      body: options.body && JSON.stringify(options.body),
       headers: {
         Authorization: `bearer ${Auth.getToken()}`,
+        'Content-Type': 'application/json',
       }
     }).then(res => res.json());
   }
-
 }
 
 export default Auth;

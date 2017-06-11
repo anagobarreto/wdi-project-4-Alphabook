@@ -12,7 +12,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 const localSignupStrategy = require('./passport/local-signup');
@@ -21,12 +20,14 @@ passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
 const authCheckMiddleware = require('./middleware/auth-check');
+const apiRoutes = require('./routes/api');
+app.use('/api', bodyParser.json());
 app.use('/api', authCheckMiddleware);
+app.use('/api', apiRoutes);
 
 const authRoutes = require('./routes/auth');
-const apiRoutes = require('./routes/api');
+app.use('/auth', bodyParser.urlencoded({ extended: false }));
 app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(app.static('build'));

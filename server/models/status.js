@@ -2,12 +2,14 @@ const mongoose = require('mongoose');
 
 const StatusSchema = new mongoose.Schema({
   text: String,
-  userId: mongoose.Schema.Types.ObjectId,
-  likes: [mongoose.Schema.Types.ObjectId],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   comments: [{
     text: String,
-    userId: mongoose.Schema.Types.ObjectId
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   }]
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Status', StatusSchema);
