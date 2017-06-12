@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#">
-    <img alt="Anabook" src="public/banner.png" width="800">
+    <img alt="Anabook" src="public/name.png" width="800">
   </a>
 </p>
 <br>
