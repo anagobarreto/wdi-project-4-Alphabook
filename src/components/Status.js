@@ -48,11 +48,11 @@ export default class Status extends React.Component {
           <li onClick={() => {
             this.setLiked(!this.state.liked);
           }}>
-            <img className="like-icon" src="like (3).png" />
+            <img className="like-icon" src="like (2).png" />
             {this.state.liked ? 'Unlike' : 'Like'}
           </li>
-          <li>Comment</li>
-          <li>Share</li>
+          <li><img className="comment-icon" src="comment.png" />Comment</li>
+          <li><img className="share-icon" src="share.png" />Share</li>
         </ul>
       </article>
     );

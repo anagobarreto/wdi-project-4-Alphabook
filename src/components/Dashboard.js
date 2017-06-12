@@ -30,23 +30,23 @@ export default class Dashboard extends Component {
     return (
       <Layout>
         <aside className="aside">
-          <Link to="/profile">Ana Barreto</Link>
+          <Link to="/profile"> Test Name </Link>
           <ul className="top">
-            <li><Link to="/">News Feed</Link></li>
-            <li><Link to="/messages">Messages</Link></li>
-            <li><Link to="/friends">Friends</Link></li>
+            <li><img className="aside-icons" src="newsfeed.png" /><Link to="/">News Feed</Link></li>
+            <li><img className="aside-icons" src="chat (2).png" /><Link to="/messages">Messages</Link></li>
+            <li><img className="aside-icons" src="friends.png" /><Link to="/friends">Friends</Link></li>
           </ul>
           <ul className="bottom">
-            <li><Link to="/events">Events</Link></li>
-            <li><Link to="/groups">Groups</Link></li>
-            <li><Link to="/pages">Pages</Link></li>
+            <li><img className="aside-icons" src="calendar.png" /><Link to="/events">Events</Link></li>
+            <li><img className="aside-icons" src="groups.png" /><Link to="/groups">Groups</Link></li>
+            <li><img className="aside-icons" src="flag1.png" /><Link to="/pages">Pages</Link></li>
           </ul>
         </aside>
 
         <section>
           <div className='new-status'>
             <textarea
-              placeholder='Post a new status...'
+              placeholder='What&#39;s in your mind?'
               value={this.state.draftStatus}
               onChange={(e) => {
                 this.setState({draftStatus: e.target.value});

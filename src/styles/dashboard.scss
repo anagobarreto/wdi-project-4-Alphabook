@@ -93,6 +93,28 @@ article.status {
   .like-icon {
     margin-right: 5px;
     vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    filter: invert(50%);
+  }
+
+  .comment-icon {
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    filter: invert(50%);
+  }
+
+  .share-icon{
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    filter: invert(50%);
+    &:hover {
+      filter: invert(30%);
+    }
   }
 
   .status-likes {
@@ -166,7 +188,7 @@ aside {
     color: inherit;
     text-decoration: none;
     display: block;
-    padding: 5px 10px;
+    padding: 7px 10px;
   }
 
   ul {
@@ -176,6 +198,8 @@ aside {
     margin-top: 20px;
 
     li {
+      height: 30px;
+
       &:hover {
         background-color: #fff;
       }
@@ -189,4 +213,13 @@ aside {
   &:hover {
     color: red;
   }
+}
+
+
+.aside-icons {
+  width: 25px;
+  height: 25px;
+  filter: grayscale(60%);
+  float: left;
+  margin-right: 7px;
 }
