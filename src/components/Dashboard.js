@@ -114,6 +114,11 @@ export default class Dashboard extends Component {
               </div>
             </article>}
 
+            {statuses.length ? null : <div className="empty-warning">
+              <p>You aren't following anyone!</p>
+              <p>Check out the <Link to='/users'>Users</Link> page and find people to follow.</p>
+            </div>}
+
             {statuses.map(status => {
               return <Status key={status.id} currentUser={currentUser} {...status} />;
             })}

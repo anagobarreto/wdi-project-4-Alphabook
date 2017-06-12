@@ -2,6 +2,7 @@ import Markdown from 'react-remarkable';
 import React from 'react';
 import { Link } from 'react-router';
 import Auth from '../modules/Auth';
+import moment from 'moment';
 
 export default class Status extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ export default class Status extends React.Component {
     let likes = this.props.likes.slice();
     if (this.state.liked) {
       if (!this.hasLiked(likes)) {
-        likes.unshift(this.props.currentUser);
+        likes.push(this.props.currentUser);
       }
     } else {
       likes = likes.filter(user => {
@@ -87,8 +88,19 @@ export default class Status extends React.Component {
     }
     if (likes.length > 0) {
       return <p className="status-likes">
-        {likes.map(user => {
-          return <Link to={'/profile/' + user._id}>{user.name}</Link>;
+        <div className="like-icon-container">
+          <div className="like-icon" />
+        </div>
+        {likes.map((user, i) => {
+          return [
+            <Link
+              key={i}
+              to={'/profile/' + user._id}
+            >
+              {user.name}
+            </Link>,
+            likes[i + 1] ? ', ' : null
+          ];
         })}
       </p>;
     } else {
@@ -185,7 +197,11 @@ export default class Status extends React.Component {
         <div className="status-container">
           <p className="status-header">
             <img className="profile-pic" src={props.user.profilePic} />
-            <Link to={`/profile/${props.user._id}`}>{props.user.name}</Link>
+
+            <div className='text'>
+              <p><Link to={`/profile/${props.user._id}`}>{props.user.name}</Link></p>
+              <p className="timestamp">{moment(props.createdAt).fromNow()}</p>
+            </div>
 
             {this.isOwner() && <div className='right'>
               <button

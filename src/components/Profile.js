@@ -1,39 +1,33 @@
 import Layout from './Layout.js';
 import Status from './Status.js';
+import FollowButton from './FollowButton.js';
 import React from 'react';
 import Auth from '../modules/Auth';
 
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {showProfilePicDialog: false, follows: props.follows};
-  }
-
-  setFollows(follows) {
-    this.setState({follows});
-
-    if (follows) {
-      Auth.fetch('/api/follow', {
-        method: 'POST',
-        body: {
-          user: this.props.user.id,
-        }
-      });
-    } else {
-      Auth.fetch('/api/unfollow', {
-        method: 'POST',
-        body: {
-          user: this.props.user.id,
-        }
-      });
-    }
+    this.state = {showProfilePicDialog: false};
   }
 
   render() {
     return <Layout render={(currentUser) => {
       const isSelf = this.props.user.id === currentUser.id;
 
-      return <div>
+      return <div className="profile-page">
+        <div className="cover">
+          <img src={this.props.user.profilePic} className="profile-pic" />
+          <h1>{this.props.user.name}</h1>
+
+          {isSelf &&
+            <button className="right" onClick={() => {
+              this.setState({showProfilePicDialog: true});
+            }}>Change Profile Pic</button>}
+
+          {!isSelf &&
+            <FollowButton className="right" user={this.props.user} follows={this.props.follows} />}
+        </div>
+
         {this.state.showProfilePicDialog &&
           <div>
             <div className="modal">
@@ -48,20 +42,6 @@ export default class Profile extends React.Component {
               this.setState({showProfilePicDialog: false});
             }}></div>
           </div>}
-
-        <h1>{this.props.user.name}</h1>
-
-        {isSelf &&
-          <button onClick={() => {
-            this.setState({showProfilePicDialog: true});
-          }}>Change Profile Pic</button>}
-
-        {!isSelf &&
-          <button
-            onClick={() => {
-              this.setFollows(!this.state.follows);
-            }}
-          >{this.state.follows ? 'Unfollow' : 'Follow'}</button>}
 
         {this.props.statuses.map(status => {
           return <Status

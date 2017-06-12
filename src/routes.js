@@ -3,6 +3,7 @@ import DashboardPage from './containers/DashboardPage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ProfilePage from './containers/ProfilePage';
+import UsersPage from './containers/UsersPage';
 import Auth from './modules/Auth';
 
 const routes = {
@@ -31,6 +32,11 @@ const routes = {
     {
       path: '/signup',
       component: SignUpPage
+    },
+
+    {
+      path: '/users',
+      component: UsersPage
     },
 
     {

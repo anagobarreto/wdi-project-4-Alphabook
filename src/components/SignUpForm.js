@@ -8,55 +8,60 @@ const SignUpForm = ({
   errors,
   user,
 }) => (
-  <div className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Sign Up</h2>
+  <div className="homepage login">
+    <div className="container">
+      <img src="/logo3.png" />
 
-      <ul>
-        {Object.keys(errors).map(key => {
-          const val = errors[key];
-          if (!val) {
-            return null;
-          }
+      <form action="/" onSubmit={onSubmit}>
+        <h2 className="card-heading">Sign Up</h2>
 
-          return <li key={key} className="error-message">{val}</li>;
-        })}
-      </ul>
+        <ul>
+          {Object.keys(errors).map(key => {
+            const val = errors[key];
+            if (!val) {
+              return null;
+            }
 
-      <div className="field-line">
-        <input
-          placeholder="Name"
-          type="text"
-          name="name"
-          onChange={onChange}
-          value={user.name}
-        />
-      </div>
-      <div className="field-line">
-        <input
-          placeholder="Email"
-          name="email"
-          onChange={onChange}
-          value={user.email}
-        />
-      </div>
+            return <li key={key} className="error-message">{val}</li>;
+          })}
+        </ul>
 
-      <div className="field-line">
-        <input
-          placeholder="Password"
-          type="password"
-          name="password"
-          onChange={onChange}
-          value={user.password}
-        />
-      </div>
+        <div className="field-line">
+          <input
+            placeholder="Name"
+            type="text"
+            name="name"
+            onChange={onChange}
+            value={user.name}
+          />
+        </div>
+        <div className="field-line">
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            onChange={onChange}
+            value={user.email}
+          />
+        </div>
 
-      <div className="button-line">
-        <input type="submit" label="Create New Account" />
-      </div>
+        <div className="field-line">
+          <input
+            placeholder="Password"
+            type="password"
+            name="password"
+            onChange={onChange}
+            value={user.password}
+          />
+        </div>
 
-      <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
-    </form>
+        <div className="button-line">
+          <input type="submit" value="Create New Account" />
+        </div>
+
+        <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
+      </form>
+    </div>
   </div>
 );
 

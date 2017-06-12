@@ -37,7 +37,7 @@ app.use('/api', authCheckMiddleware);
 app.use('/api', apiRoutes);
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', bodyParser.urlencoded({ extended: false }));
+app.use('/auth', bodyParser.json());
 app.use('/auth', authRoutes);
 
 

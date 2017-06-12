@@ -4,6 +4,10 @@ const User = require('../models/user');
 
 const router = new express.Router();
 
+function doesFollow(req, user) {
+  return Boolean(req.user.follows.find(id => id.equals(user._id)));
+}
+
 router.get('/dashboard', (req, res) => {
   Status
     .find({
@@ -42,7 +46,6 @@ router.post('/save-post', (req, res) => {
 });
 
 router.post('/follow', (req, res) => {
-  console.log(req.body);
   req.user.follows.push(req.body.user);
   req.user.save(() => {
     res.json({});
@@ -56,6 +59,21 @@ router.post('/unfollow', (req, res) => {
   req.user.save(() => {
     res.json({});
   });
+});
+
+router.get('/users', (req, res) => {
+  User
+    .find({})
+    .then(users => {
+      res.json(users.map(user => {
+        return {
+          id: user._id,
+          name: user.name,
+          profilePic: user.profilePic,
+          follows: doesFollow(req, user)
+        };
+      }));
+    })
 });
 
 router.post('/like', (req, res) => {
@@ -141,7 +159,7 @@ router.post('/profile', (req, res) => {
         .populate('comments.user', 'name profilePic')
         .then(statuses => {
           res.json({
-            follows: Boolean(req.user.follows.find(id => id.equals(user._id))),
+            follows: doesFollow(req, user),
             statuses,
             user: {id: user._id, name: user.name, profilePic: user.profilePic},
           });

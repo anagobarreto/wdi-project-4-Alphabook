@@ -30,8 +30,16 @@ export default class Layout extends Component {
             </Link>
           </h1>
           <ul>
-            <li><Link to={"/profile/" + user.id}>{user.name}</Link></li>
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Your feed</Link></li>
+            <li><Link to="/users">Users</Link></li>
+          </ul>
+          <ul className="right">
+            <li>
+              <Link to={"/profile/" + user.id}>
+                <img src={user.profilePic} className="profile-pic" />
+                {user.name}
+              </Link>
+            </li>
             <li><Link to="/logout">Logout</Link></li>
           </ul>
         </div>
@@ -41,11 +49,6 @@ export default class Layout extends Component {
           {this.props.render(this.state.user)}
         </div>
       </main>
-      <footer>
-        <div className="container">
-          Website by Ana Barreto
-        </div>
-      </footer>
     </div>;
   }
 }

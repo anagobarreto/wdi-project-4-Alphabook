@@ -14,6 +14,16 @@ header {
 
   a {
     color: inherit;
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+  }
+
+  .profile-pic {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 10px;
   }
 
   ul {
@@ -21,9 +31,144 @@ header {
     margin: 0;
     padding: 0 10px;
 
+    &.right {
+      float: right;
+    }
+
     li {
       display: inline-block;
-      margin-right: 10px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+.empty-warning {
+  text-align: center;
+  width: 500px;
+}
+
+.homepage {
+  text-align: center;
+  background-color: #506ba3;
+  min-height: 100%;
+  color: #fff;
+
+  &.login {
+    text-align: left;
+    padding-top: 100px;
+
+    img {
+      float: left;
+    }
+
+    form {
+      float: left;
+      width: 400px;
+      margin-left: 40px;
+    }
+
+    input[type=email], input[type=text], input[type=password] {
+      display: block;
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+    }
+  }
+
+  p.intro {
+    margin-bottom: 30px;
+  }
+
+  .success-message {
+    color: #4ae955;
+  }
+
+  .error-message {
+    color: #e94a4a;
+  }
+
+  a, input[type=submit] {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  img {
+    height: 200px;
+  }
+}
+
+.profile-page {
+  .status {
+    margin: 0 auto;
+  }
+}
+
+.cover {
+  padding: 20px 0;
+  height: 140px;
+  line-height: 100px;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 20px;
+
+  .right {
+    float: right;
+    margin-top: 40px;
+  }
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .profile-pic {
+    float: left;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.users-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    line-height: 50px;
+    margin-bottom: 10px;
+    width: 50%;
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+
+    img {
+      vertical-align: middle;
+      height: 50px;
+      width: 50px;
+      margin-right: 20px;
+    }
+
+    button {
+      display: block;
+      float: right;
+      height: 21px;
+      line-height: 21px;
+      margin-top: 14.5px;
+      padding: 0 10px;
     }
   }
 }
@@ -149,6 +294,14 @@ article.status {
     }
   }
 
+  .status-text {
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
   .status-footer {
     background-color: #eee;
     padding: 0 10px;
@@ -158,6 +311,32 @@ article.status {
 
     .status-likes {
       font-size: 12px;
+      border-bottom: 1px solid #bbb;
+
+      .like-icon-container {
+        display: inline;
+        float: left;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background-color: rgb(88, 144, 255);
+
+        .like-icon {
+          display: block;
+          width: 9px;
+          height: 9px;
+          margin: 3.5px;
+          filter: none;
+          background: none;
+          background-color: #fff;
+          mask-image: url('/like (2).png');
+          -webkit-mask-image: url('/like (2).png');
+          mask-size: 100% 100%;
+          -webkit-mask-size: 100% 100%;
+        }
+      }
     }
   }
 
@@ -219,13 +398,31 @@ article.status {
 
   .status-header {
     line-height: 50px;
+    height: 50px;
     margin: 0;
+
+    .text {
+      padding: 5px 0;
+      line-height: 20px;
+      float: left;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .timestamp {
+      display: inline;
+      font-size: 12px;
+      color: #888;
+    }
 
     .right {
       float: right;
     }
 
     .profile-pic {
+      float: left;
       height: 50px;
       width: 50px;
       vertical-align: middle;
@@ -236,12 +433,6 @@ article.status {
       font-weight: bold;
     }
   }
-}
-
-footer {
-  clear: both;
-  background-color: #eee;
-  padding: 10px;
 }
 
 .container {
