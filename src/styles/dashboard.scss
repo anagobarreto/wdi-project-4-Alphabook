@@ -29,8 +29,12 @@ header {
 }
 
 .new-status {
-  width: 500px;
+  max-width: 500px;
   margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   textarea {
     display: block;
@@ -106,7 +110,7 @@ article.status {
     filter: invert(50%);
   }
 
-  .share-icon{
+  .share-icon {
     margin-right: 5px;
     vertical-align: middle;
     width: 15px;
@@ -117,9 +121,57 @@ article.status {
     }
   }
 
-  .status-likes {
-    color: blue;
-    margin-bottom: 0;
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul.comments {
+    margin: 0;
+    padding: 0;
+    line-height: 24px;
+
+    li {
+      list-style: none;
+      margin-top: 5px;
+    }
+
+    .profile-pic {
+      width: 24px;
+      height: 24px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+
+  .status-footer {
+    background-color: #eee;
+    padding: 0 10px;
+    line-height: 30px;
+    border-top: 1px solid #bbb;
+    padding-bottom: 10px;
+
+    .status-likes {
+      font-size: 12px;
+    }
+  }
+
+  .comment-input {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+
+    &:focus {
+      border-color: #aaa;
+    }
   }
 
   .status-buttons {
@@ -140,12 +192,38 @@ article.status {
       &:hover {
         text-decoration: underline;
       }
+
+      .like-icon {
+        display: inline-block;
+        background-size: 100% 100%;
+        background-image: url('/like (2).png');
+        width: 15px;
+        height: 15px;
+      }
+
+      &.liked {
+        color: rgb(88, 144, 255);
+
+        .like-icon {
+          filter: none;
+          background: none;
+          background-color: rgb(88, 144, 255);
+          mask-image: url('/like (2).png');
+          -webkit-mask-image: url('/like (2).png');
+          mask-size: 100% 100%;
+          -webkit-mask-size: 100% 100%;
+        }
+      }
     }
   }
 
   .status-header {
     line-height: 50px;
     margin: 0;
+
+    .right {
+      float: right;
+    }
 
     .profile-pic {
       height: 50px;
@@ -182,7 +260,19 @@ aside {
   width: 20%;
   float: left;
   padding: 10px 0;
-  font-size: 12px;
+  font-size: 14px;
+
+  .profile-name {
+    margin: 0;
+    line-height: 30px;
+
+    img {
+      vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  }
 
   a {
     color: inherit;
@@ -195,7 +285,7 @@ aside {
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-top: 20px;
+    margin-top: 10px;
 
     li {
       height: 30px;
@@ -204,6 +294,14 @@ aside {
         background-color: #fff;
       }
     }
+  }
+
+  .aside-icons {
+    width: 18px;
+    height: 18px;
+    filter: grayscale(60%);
+    float: left;
+    margin-right: 7px;
   }
 }
 
@@ -215,11 +313,27 @@ aside {
   }
 }
 
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
 
-.aside-icons {
-  width: 25px;
-  height: 25px;
-  filter: grayscale(60%);
-  float: left;
-  margin-right: 7px;
+.modal {
+  border-radius: 3px;
+  border: 1px solid #aaa;
+  padding: 20px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 300px;
+  margin-top: -150px;
+  margin-left: -250px;
+  z-index: 2;
 }

@@ -1,3 +1,4 @@
+import Markdown from 'react-remarkable';
 import { Link } from 'react-router';
 import Status from './Status';
 import Auth from '../modules/Auth';
@@ -28,44 +29,97 @@ export default class Dashboard extends Component {
     const statuses = this.state.extraStatuses.concat(this.props.statuses);
 
     return (
-      <Layout>
-        <aside className="aside">
-          <Link to="/profile"> Test Name </Link>
-          <ul className="top">
-            <li><img className="aside-icons" src="newsfeed.png" /><Link to="/">News Feed</Link></li>
-            <li><img className="aside-icons" src="chat (2).png" /><Link to="/messages">Messages</Link></li>
-            <li><img className="aside-icons" src="friends.png" /><Link to="/friends">Friends</Link></li>
-          </ul>
-          <ul className="bottom">
-            <li><img className="aside-icons" src="calendar.png" /><Link to="/events">Events</Link></li>
-            <li><img className="aside-icons" src="groups.png" /><Link to="/groups">Groups</Link></li>
-            <li><img className="aside-icons" src="flag1.png" /><Link to="/pages">Pages</Link></li>
-          </ul>
-        </aside>
+      <Layout render={currentUser => {
+        return <div>
+          <aside className="aside">
+            <h1 className="profile-name">
+              <Link to={"/profile/" + currentUser.id}>
+                <img src={currentUser.profilePic} />
+                {currentUser.name}
+              </Link>
+            </h1>
+            <ul className="top">
+              <li>
+                <Link to="/">
+                  <img className="aside-icons" src="newsfeed.png" />
+                  News Feed
+                </Link>
+              </li>
+              <li>
+                <Link to="/messages">
+                  <img className="aside-icons" src="chat (2).png" />
+                  Messages
+                </Link>
+              </li>
+              <li>
+                <Link to="/friends">
+                  <img className="aside-icons" src="friends.png" />
+                  Friends
+                </Link>
+              </li>
+            </ul>
+            <ul className="bottom">
+              <li>
+                <Link to="/events">
+                  <img className="aside-icons" src="calendar.png" />
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link to="/groups">
+                  <img className="aside-icons" src="groups.png" />
+                  Groups
+                </Link>
+              </li>
+              <li>
+                <Link to="/pages">
+                  <img className="aside-icons" src="flag1.png" />
+                  Pages
+                </Link>
+              </li>
+            </ul>
+          </aside>
 
-        <section>
-          <div className='new-status'>
-            <textarea
-              placeholder='What&#39;s in your mind?'
-              value={this.state.draftStatus}
-              onChange={(e) => {
-                this.setState({draftStatus: e.target.value});
-              }}
-            />
+          <section>
+            <div className='new-status'>
+              <textarea
+                placeholder={`What's on your mind, ${currentUser.name}?`}
+                value={this.state.draftStatus}
+                ref={(textarea) => {
+                  this.textarea = textarea;
+                }}
+                onChange={(e) => {
+                  this.setState({draftStatus: e.target.value});
+                }}
+              />
 
-            <div className='button-container'>
-              <button onClick={() => {
-                const status = this.state.draftStatus;
-                this.postStatus(status);
-                this.setState({draftStatus: ''});
-              }}>Post</button>
+              <div className='button-container'>
+                <button onClick={() => {
+                  const status = this.state.draftStatus.trim();
+                  if (!status) {
+                    this.textarea.focus();
+                    return;
+                  }
+
+                  this.postStatus(status);
+                  this.setState({draftStatus: ''});
+                }}>Post</button>
+              </div>
             </div>
-          </div>
-          {statuses.map(status => {
-            return <Status key={status.id} {...status} />;
-          })}
-        </section>
-      </Layout>
+
+            {this.state.draftStatus && <article className='status'>
+              <div className='status-container'>
+                <p><strong>Preview</strong></p>
+                <Markdown source={this.state.draftStatus} />
+              </div>
+            </article>}
+
+            {statuses.map(status => {
+              return <Status key={status.id} currentUser={currentUser} {...status} />;
+            })}
+          </section>
+        </div>;
+      }} />
     );
   }
 }

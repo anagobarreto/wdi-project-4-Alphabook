@@ -1,7 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cloudinary = require('cloudinary');
 const passport = require('passport');
 const config = require('./config');
+const os = require('os');
+const multer = require('multer');
+
+const upload = multer({dest: os.tmpdir()});
+
+cloudinary.config({
+  cloud_name: 'ddq2pvlfw',
+  api_key: '421639664959279',
+  api_secret: 'w5ugfOauFBwXKbhh4BcsjwvFncs'
+});
 
 require('./models').connect(config.dbUri);
 
@@ -28,6 +39,16 @@ app.use('/api', apiRoutes);
 const authRoutes = require('./routes/auth');
 app.use('/auth', bodyParser.urlencoded({ extended: false }));
 app.use('/auth', authRoutes);
+
+
+app.post('/upload-profile-pic', upload.single('photo'), authCheckMiddleware, (req, res) => {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    req.user.profilePic = result.url;
+    req.user.save(() => {
+      res.redirect('/profile/' + req.user._id);
+    });
+  })
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(app.static('build'));

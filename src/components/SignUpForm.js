@@ -12,14 +12,22 @@ const SignUpForm = ({
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
 
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+      <ul>
+        {Object.keys(errors).map(key => {
+          const val = errors[key];
+          if (!val) {
+            return null;
+          }
+
+          return <li key={key} className="error-message">{val}</li>;
+        })}
+      </ul>
 
       <div className="field-line">
         <input
           placeholder="Name"
           type="text"
           name="name"
-          errorText={errors.name}
           onChange={onChange}
           value={user.name}
         />
@@ -28,7 +36,6 @@ const SignUpForm = ({
         <input
           placeholder="Email"
           name="email"
-          errorText={errors.email}
           onChange={onChange}
           value={user.email}
         />
@@ -40,7 +47,6 @@ const SignUpForm = ({
           type="password"
           name="password"
           onChange={onChange}
-          errorText={errors.password}
           value={user.password}
         />
       </div>

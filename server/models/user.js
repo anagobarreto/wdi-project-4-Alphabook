@@ -7,7 +7,9 @@ const UserSchema = new mongoose.Schema({
     index: { unique: true }
   },
   password: String,
-  name: String
+  name: String,
+  profilePic: {type: String, default: '/avatar.jpg'},
+  follows: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
 UserSchema.methods.comparePassword = function comparePassword(password, callback) {

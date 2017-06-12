@@ -27,8 +27,8 @@ export default class ProfilePage extends React.Component {
     Auth
       .fetch('/api/profile', {
         method: 'POST',
-        form: {
-          user: this.props.params.user,
+        body: {
+          user: this.props.params.id,
         },
       })
       .then(data => {
@@ -38,7 +38,7 @@ export default class ProfilePage extends React.Component {
 
   render() {
     if (this.state.user) {
-      return <Profile user={this.state.user} statuses={this.state.statuses} />;
+      return <Profile follows={this.state.follows} user={this.state.user} statuses={this.state.statuses} />;
     } else {
       return null;
     }
