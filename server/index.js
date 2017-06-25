@@ -52,6 +52,10 @@ app.post('/upload-profile-pic', upload.single('photo'), authCheckMiddleware, (re
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
+
+  app.get('/*', (req, res) => {
+    res.sendFile('build/index.html');
+  });
 } else {
   const proxy = require('http-proxy-middleware');
   app.use(proxy('/', {target: 'http://localhost:3000', ws: true}));
