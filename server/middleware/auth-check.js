@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
 
   const token = req.body.token || req.headers.authorization.split(' ')[1];
 
-  return jwt.verify(token, config.jwtSecret, (err, decoded) => {
+  return jwt.verify(token, process.env.JWT_SECRET || config.jwtSecret, (err, decoded) => {
     if (err) {
       return res.status(401).end();
     }

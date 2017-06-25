@@ -14,7 +14,7 @@ cloudinary.config({
   api_secret: 'w5ugfOauFBwXKbhh4BcsjwvFncs'
 });
 
-require('./models').connect(config.dbUri);
+require('./models').connect(process.env.MONGODB_URI || config.dbUri);
 
 const app = express();
 
@@ -51,7 +51,7 @@ app.post('/upload-profile-pic', upload.single('photo'), authCheckMiddleware, (re
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(app.static('build'));
+  app.use(express.static('build'));
 } else {
   const proxy = require('http-proxy-middleware');
   app.use(proxy('/', {target: 'http://localhost:3000', ws: true}));

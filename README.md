@@ -18,9 +18,20 @@ ___
 
 ---
 ## Languages:
-
+HTML5
+CSS3
+JS
 ## Libraries:
 
 ## Future work:
 
 ## Aditional work:
+- Delete/edit comments
+- Pagination
+- Edit password
+- Edit account settings
+- Add location
+- About section
+- Photo uploads to newsfeed
+- Friend requests
+- 
