@@ -57,6 +57,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(proxy('/', {target: 'http://localhost:3000', ws: true}));
 }
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log('Server is running on http://localhost:3001');
 });
