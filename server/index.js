@@ -9,9 +9,9 @@ const multer = require('multer');
 const upload = multer({dest: os.tmpdir()});
 
 cloudinary.config({
-  cloud_name: 'ddq2pvlfw',
-  api_key: '421639664959279',
-  api_secret: 'w5ugfOauFBwXKbhh4BcsjwvFncs'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 require('./models').connect(process.env.MONGODB_URI || config.dbUri);
